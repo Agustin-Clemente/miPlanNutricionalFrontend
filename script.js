@@ -134,7 +134,8 @@ console.log(groupedData);
         listaComidasElement.appendChild(listItem);
       });
 
-      Object.keys(groupedData).forEach(date => {
+      Object.keys(groupedData).sort((a, b) => new Date(b) - new Date(a)).forEach(date => {
+        
     const card = createCard(date, groupedData[date]);
     listaComidasElement.appendChild(card);
 });

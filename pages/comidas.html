@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Plan Nutricional</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header>
+        <h1>Mi Plan Nutricional</h1>
+    </header>
+
+    <div class="navbar">
+        <a href="../index.html" id="comidas">Plan</a>
+        <a href="./pautas.html" id="pautas">Pautas</a>
+    </div>
+
+    <main>
+        <section id="registro-comidas">
+            <h2>Registro de Comidas</h2>
+            <div id="registro-form">
+                <label for="fecha-comida">Fecha:</label>
+                <input type="date" id="fecha-comida" name="fecha-comida">
+
+                <label for="hora-comida">Hora:</label>
+                <input type="time" id="hora-comida" name="hora-comida">
+
+                <label for="comida">Comida:</label>
+                <textarea id="comida" name="comida" rows="4" cols="50"></textarea>
+
+                <label for="evento">Evento:</label>
+    <input type="checkbox" id="evento" name="evento"> 
+
+                <button id="btn-registrar">Registrar Comida</button>
+            </div>
+            <div id="comidas-registradas">
+                <div id="comidas-listado">
+                    <h2>Comidas Registradas</h2>
+                    <ul id="lista-comidas"></ul>
+                </div>
+                
+                <!-- Aquí se mostrarán las comidas registradas -->
+                <div class="card">
+                    <div class="event-label">Evento</div>
+                    <div class="card-header">
+                        <h2>Jueves, 30 de Enero de 2025</h2>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><span>08:30</span> Leche vegetal chocolate y media barrita de cereal</li>
+                            <li><span>13:30</span> 1 tomate + 1/4 plato fideos + 2 milanesas arroz con 2 gajos de limón + 1 taza ensalada de frutas</li>
+                            <li><span>20:00</span> 2 hamburguesas BK + papas y gaseosa</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Viernes, 31 de Enero de 2025</h2>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><span>10:00</span> Leche vegetal chocolate y una banana</li>
+                            <li><span>13:30</span> 1 tomate + 2 milanesas arroz con 2 gajos de limón + 1/2 taza ensalada de frutas</li>
+                            <li><span>18:30</span> Licuado de banana (leche chocolate)</li>
+                            <li><span>21:00</span> 2 hamburguesas de "no pollo" con mayonesa</li>
+                            <li><span>23:00</span> Leche vegetal chocolate</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../script.js" type="module"></script>
+
+    
+</body>
+</html>
