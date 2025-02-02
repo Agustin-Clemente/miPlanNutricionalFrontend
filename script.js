@@ -119,9 +119,12 @@ const createCard = (date, items) => {
   items.forEach(item => {
       const listItem = document.createElement('li');
       const timeSpan = document.createElement('span');
+      const comidaSpan = document.createElement('span');
+      comidaSpan.className = 'centrar';
       timeSpan.textContent = item.hora;
+      comidaSpan.textContent = item.comida;
       listItem.appendChild(timeSpan);
-      listItem.append(` ${item.comida}`);
+      listItem.append(comidaSpan);
       list.appendChild(listItem);
   });
   
