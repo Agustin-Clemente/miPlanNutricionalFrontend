@@ -21,23 +21,24 @@
             <h2>Registro de Comidas</h2>
             <div id="registro-form">
                 <label for="fecha-comida">Fecha:</label>
-                <input type="date" id="fecha-comida" name="fecha-comida">
+                <input type="date" id="fecha-comida" name="fecha-comida" required>
 
                 <label for="hora-comida">Hora:</label>
-                <input type="time" id="hora-comida" name="hora-comida">
+                <input type="time" id="hora-comida" name="hora-comida" required>
 
                 <label for="comida">Comida:</label>
-                <textarea id="comida" name="comida" rows="4" cols="50"></textarea>
+                <textarea id="comida" name="comida" rows="4" cols="50" required></textarea>
 
                 <label for="evento">Evento:</label>
     <input type="checkbox" id="evento" name="evento"> 
 
-                <button id="btn-registrar">Registrar Comida</button>
+                <button id="btn-registrar" disabled>Registrar Comida</button>
             </div>
             <div id="comidas-registradas">
                 <div id="comidas-listado">
                     <h2>Comidas Registradas</h2>
-                    <ul id="lista-comidas"></ul>
+                    <div id="lista-comidas"></div>
+                    <!-- <ul id="lista-comidas"></ul> -->
                 </div>
                 
                 <!-- Aquí se mostrarán las comidas registradas -->
@@ -73,6 +74,8 @@
     </main>
 
     <script src="../script.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
     
 </body>

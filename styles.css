@@ -24,9 +24,7 @@ header {
     padding: 14px 16px;
     text-decoration: none;
     margin: 5px;
-            border-radius: 12px;
-            
-           
+    border-radius: 12px;   
 }
 
 .navbar a#comidas {
@@ -47,6 +45,20 @@ main {
     padding: 20px;
 }
 
+#plan-nutricional{
+    text-align: center;
+    max-width: 858px;
+  margin: 0 auto;
+}
+
+li{
+    list-style-type: none;
+}
+
+#pautas li{
+margin-top: 24px;
+}
+
 section {
     background-color: white;
     padding: 20px;
@@ -55,13 +67,24 @@ section {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+div #lista-comidas{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 12px;
+}
+
 .card {
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    width: 300px;
+    max-width: 300px;
     padding: 20px;
     position: relative; /* Para que el cartel se posicione correctamente */
+}
+
+.card-body ul li span{
+    margin-right: 12px;
 }
 
 .event-label {
@@ -107,11 +130,27 @@ section {
     margin-right: 5px;
 }
 
-
+#registro-comidas{
+    text-align: center;
+}
 
 #registro-form label, #registro-form input, #registro-form textarea, #registro-form button {
     display: block;
-    margin-bottom: 10px;
+    margin: 0 auto;
+    
+}
+
+#registro-form input{
+    margin-top: 6px;
+    margin-bottom: 24px;
+}
+
+#registro-form label[for="evento"], input#evento {
+            display: inline-block;
+        } 
+
+#registro-form textarea {
+    max-width: 200px;
 }
 
 #registro-form button {
@@ -123,10 +162,19 @@ section {
     cursor: pointer;
 }
 
+#registro-form button:disabled {
+    background-color: grey;
+
+    &:hover{
+        background-color: grey;
+        cursor: auto;
+    }
+}
+
 #registro-form button:hover {
     background-color: #367c39;
 }
 
 #comidas-registradas {
-    margin-top: 20px;
+    margin-top: 56px;
 }

@@ -1,8 +1,8 @@
 //document.addEventListener('DOMContentLoaded', function() {
      const btnRegistrar = document.getElementById('btn-registrar');
-   /* const fechaComidaInput = document.getElementById('fecha-comida');
+   const fechaComidaInput = document.getElementById('fecha-comida');
     const horaComidaInput = document.getElementById('hora-comida');
-    const comidaInput = document.getElementById('comida');
+    const comidaInput = document.getElementById('comida');/*
     const comidasRegistradasDiv = document.getElementById('comidas-registradas');
 
    
@@ -25,8 +25,8 @@
     };
 
     try {
-        // const respuesta = await fetch('https://miplannutricionalbackend.onrender.com/api/comidas', {
-          const respuesta = await fetch('http://localhost:10000/api/comidas', {
+        const respuesta = await fetch('https://miplannutricionalbackend.onrender.com/api/comidas', {
+          // const respuesta = await fetch('http://localhost:10000/api/comidas', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -43,10 +43,24 @@
             document.getElementById("hora-comida").value = "";
             document.getElementById("comida").value = "";
             document.getElementById("evento").checked = false;
+
+            Swal.fire({
+              icon: 'success',
+              title: '¡Comida agregada!',
+              text: 'La comida ha sido agregada correctamente.',
+              showConfirmButton: true
+          });
         } else {
             console.error('Error al registrar la comida');
             const data = await respuesta.json();
             console.log(data.message);
+
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: `Hubo un problema al agregar la comida. ${data.message}`,
+              showConfirmButton: true
+          });
         }
       } catch (error) {
         console.error('Error en la petición:', error);
@@ -56,8 +70,8 @@
 
 const fetchComidas = async () => {
     try {
-      // const response = await fetch('https://miplannutricionalbackend.onrender.com/api/comidas');
-      const response = await fetch('http://localhost:10000/api/comidas');
+      const response = await fetch('https://miplannutricionalbackend.onrender.com/api/comidas');
+      // const response = await fetch('http://localhost:10000/api/comidas');
       if (!response.ok) {
         throw new Error(`Error al obtener las comidas: ${response.statusText}`);
       }
@@ -128,11 +142,11 @@ console.log(groupedData);
     const listaComidasElement = document.getElementById('lista-comidas');
     listaComidasElement.innerHTML = ""; // Limpiar la lista anterior
 
-    comidas.forEach(comida => {
+    /* comidas.forEach(comida => {
         const listItem = document.createElement('li');
         listItem.textContent = `${formatearFechaConGuiones(comida.fecha)} - ${comida.hora} - ${comida.comida}  ${comida.evento ? 'Evento' : ''}`;
         listaComidasElement.appendChild(listItem);
-      });
+      }); */
 
       Object.keys(groupedData).sort((a, b) => new Date(b) - new Date(a)).forEach(date => {
         
@@ -172,3 +186,16 @@ function formatearFechaConGuiones(fechaString) {
             comidasRegistradasDiv.textContent = 'Aún no has registrado ninguna comida.';
         }
     } */
+
+
+        const validateInputs = () => {
+          if (fechaComidaInput.value && horaComidaInput.value && comidaInput.value) {
+              btnRegistrar.disabled = false;
+          } else {
+            btnRegistrar.disabled = true;
+          }
+      };
+
+      fechaComidaInput.addEventListener('input', validateInputs);
+      horaComidaInput.addEventListener('input', validateInputs);
+      comidaInput.addEventListener('input', validateInputs);
