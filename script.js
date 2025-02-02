@@ -25,7 +25,8 @@
     };
 
     try {
-        const respuesta = await fetch('https://miplannutricionalbackend.onrender.com/api/comidas', {
+        // const respuesta = await fetch('https://miplannutricionalbackend.onrender.com/api/comidas', {
+          const respuesta = await fetch('http://localhost:10000/api/comidas', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -55,7 +56,8 @@
 
 const fetchComidas = async () => {
     try {
-      const response = await fetch('https://miplannutricionalbackend.onrender.com/api/comidas');
+      // const response = await fetch('https://miplannutricionalbackend.onrender.com/api/comidas');
+      const response = await fetch('http://localhost:10000/api/comidas');
       if (!response.ok) {
         throw new Error(`Error al obtener las comidas: ${response.statusText}`);
       }
@@ -66,7 +68,63 @@ const fetchComidas = async () => {
     }
   };
 
+  const groupByDate = (data) => {
+    return data.reduce((result, currentItem) => {
+        const dateKey = new Date(currentItem.fecha).toISOString().split('T')[0]; // Extract the date part (YYYY-MM-DD)
+        if (!result[dateKey]) {
+            result[dateKey] = [];
+        }
+        result[dateKey].push(currentItem);
+        return result;
+    }, {});
+};
+
+const createCard = (date, items) => {
+  const card = document.createElement('div');
+  card.className = 'card';
+  
+  const hasEvent = items.some(item => item.evento);
+  if (hasEvent) {
+      const eventLabel = document.createElement('div');
+      eventLabel.className = 'event-label';
+      eventLabel.textContent = 'Evento';
+      card.appendChild(eventLabel);
+  }
+  
+  const cardHeader = document.createElement('div');
+  cardHeader.className = 'card-header';
+  const headerTitle = document.createElement('h2');
+  headerTitle.textContent = formatearFechaConGuiones(date);
+  cardHeader.appendChild(headerTitle);
+  card.appendChild(cardHeader);
+  
+  const cardBody = document.createElement('div');
+  cardBody.className = 'card-body';
+  const list = document.createElement('ul');
+  
+  items.forEach(item => {
+      const listItem = document.createElement('li');
+      const timeSpan = document.createElement('span');
+      timeSpan.textContent = item.hora;
+      listItem.appendChild(timeSpan);
+      listItem.append(` ${item.comida}`);
+      list.appendChild(listItem);
+  });
+  
+  cardBody.appendChild(list);
+  card.appendChild(cardBody);
+  
+  return card;
+};
+
+
+
+
   const actualizarListaComidas = (comidas) => {
+
+    const groupedData = groupByDate(comidas);
+console.log(groupedData);
+    
     const listaComidasElement = document.getElementById('lista-comidas');
     listaComidasElement.innerHTML = ""; // Limpiar la lista anterior
 
@@ -75,6 +133,11 @@ const fetchComidas = async () => {
         listItem.textContent = `${formatearFechaConGuiones(comida.fecha)} - ${comida.hora} - ${comida.comida}  ${comida.evento ? 'Evento' : ''}`;
         listaComidasElement.appendChild(listItem);
       });
+
+      Object.keys(groupedData).forEach(date => {
+    const card = createCard(date, groupedData[date]);
+    listaComidasElement.appendChild(card);
+});
 };
 
 fetchComidas();
