@@ -79,6 +79,10 @@ const fetchComidas = async () => {
       actualizarListaComidas(comidas);
     } catch (error) {
       console.error('Error:', error);
+    }finally {
+      // Ocultar el spinner
+      document.getElementsByClassName('loader')[0].style.display = 'none';
+      document.getElementsByClassName('carga')[0].style.display = 'none';
     }
   };
 
